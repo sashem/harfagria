@@ -5,6 +5,7 @@ import uiRouter from 'angular-ui-router';
 import mainMap from '../imports/components/mainMap/mainMap';
 import admin from '../imports/components/admin/admin';
 import login from '../imports/components/admin/login';
+import home from '../imports/components/content/home';
 
 class main {}
 
@@ -16,7 +17,8 @@ angular.module(name, [
 	uiRouter,
 	mainMap.name,
 	admin.name,
-	login.name
+	login.name,
+	home.name
 ]).config(config);
 
 
@@ -32,5 +34,9 @@ function config($locationProvider,$urlRouterProvider,$stateProvider) {
 		.state('login', {
 			url: '/admin/login',
 			template: '<login></login>'
+		})
+		.state('/', {
+			url: '/',
+			template: '<home></home>'
 		});
 }

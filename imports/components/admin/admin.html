@@ -1,3 +1,13 @@
 <div class="row">
-	
+	<div class="col-md-12">
+		<a class="btn btn-default" ng-click="logout()">Out</a>
+		
+		<div ng-if="$ctrl.realms.length == 0"><h2>There are no realms created yet</h2></div>
+		<div class="" ng-repeat="realm in $ctrl.realms">
+			{{realm.name}}	
+		</div>
+		<div class="">
+			
+		</div>
+	</div>
 </div>

@@ -1,5 +1,9 @@
 <div class="row">
 	<div class="col-md-6 col-md-offset-3">
-		 <login-buttons></login-buttons>
+		 <div class="login-form">
+		 	<input type="text" ng-model="user.email"/>
+		 	<input type="password" ng-model="user.password"/>
+		 	<a ng-click="login()">Immerse</a>
+		 </div>
 	</div>
 </div>

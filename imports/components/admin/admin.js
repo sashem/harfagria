@@ -1,5 +1,5 @@
 import angular from 'angular';
-import Meteor from 'meteor/meteor';
+import { Meteor } from 'meteor/meteor';
 import angularMeteor from 'angular-meteor';
 
 import {Realms} from '../../api/realms.js';
@@ -8,12 +8,20 @@ import template from './admin.html';
 
 class adminCtrl{
 	constructor($scope,$auth){
-		console.log($auth.currentUser);
-		if(!$auth.currentUser){
-			location.href = "admin/login";
-		}
+		Meteor.call('userId',function(err,userId){
+			if(!userId){
+				location.href = "admin/login";
+			}
+		});	
 
 		$scope.viewModel(this);
+
+		$scope.logout = function(){
+			Meteor.logout(function(error){
+				if(error)console.log(error);
+				else location.href="";
+			})
+		}
 
 		this.helpers({
 			realms () {
