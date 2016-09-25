@@ -6,8 +6,32 @@
 		<div class="" ng-repeat="realm in $ctrl.realms">
 			{{realm.name}}	
 		</div>
-		<div class="">
-			
+		<div><img ng-src="$ctrl.image">{{$ctrl.image}}</div>
+		<div class="realm-form">
+			<div>
+				<input type="text" ng-model="realm.name"/>
+				<textarea ng-model="realm.description"></textarea>
+				<div layout="column">
+				  	<div ngf-drop
+				    ngf-select
+				    ng-model = "realmImage"
+				    ngf-change="addRealmImage($file)"
+				    ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+				    class="drop-box"
+				    ngf-multiple="false"
+				    ngf-allow-dir="false"
+				    ngf-accept="'image/*'"
+				    ngf-drop-available="true"
+				    ng-hide="cropImgSrc">
+					    <div><a class="btn btn-default">Click here to select image</a></div>
+					    <div>
+					      <strong>OR</strong>
+					    </div>
+					    <div>You can also drop image to here</div>
+			  		</div>
+				</div>
+				<a ng-click="createRealm()" class="btn btn-success">Create</a>
+			</div>
 		</div>
 	</div>
 </div>
