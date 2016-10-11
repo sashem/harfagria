@@ -7,7 +7,6 @@
     font-family: mainFont;
     src: url(/fonts/Bitter-Regular.ttf);
 }
-
 .header{
 	width:100%;
 	height:180px;
@@ -31,4 +30,51 @@ h1{
 }
 body,div,p,input,h1,h2,h3,h4,h5,a{
 	font-family: mainFont;
+}
+#main-menu{
+	height:350px;
+	width: 802px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.menu-item{
+		
+}
+.menu-item-img{
+	position: absolute;
+	margin-top: 30px;
+}
+.menu-item-top{
+	height: 290px;
+	border: #F2F2F2 5px solid;
+}
+.flecha_izquierda, .flecha_derecha{
+	display: inline-block;
+	vertical-align: middle;
+	height: 350px;
+}
+.menu-item-bottom{
+	text-align: center;
+	height: 50px;
+	color: #736357;
+	line-height: 50px;
+	font-size: 16pt;
+	background-color: #F2F2F2;
+	
+}
+.scroll-show{
+	display: inline-block;
+	width: 735px;
+}
+.menu-item-container{
+	width: 210px;
+	margin-left: 29px;
+	display: inline-block;
+}
+.menu-item-subcontainer{
+	width: 180px;
+	margin-left: 10px;
+	margin-right: 10px;
+	border: #998675 solid thin;
+	height: 350px;
 }

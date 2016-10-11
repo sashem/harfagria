@@ -13,11 +13,11 @@ blaze@2.1.9
 blaze-html-templates@1.0.4
 blaze-tools@1.0.10
 boilerplate-generator@1.0.10
-bootstrap@1.0.1
 caching-compiler@1.0.6
 caching-html-compiler@1.0.6
 callback-hook@1.0.9
 check@1.2.3
+coffeescript@1.1.4
 ddp@1.2.5
 ddp-client@1.2.9
 ddp-common@1.2.6
@@ -33,6 +33,7 @@ email@1.1.17
 es5-shim@4.6.14
 fastclick@1.0.12
 geojson-utils@1.0.9
+handlebars@1.0.7
 hot-code-push@1.0.4
 html-tools@1.0.11
 htmljs@1.0.11
@@ -58,10 +59,13 @@ modules@0.7.6
 modules-runtime@0.7.6
 mongo@1.1.12
 mongo-id@1.0.5
+natestrauser:filepicker-plus@2.0.0
 npm-bcrypt@0.9.1
 npm-mongo@1.5.49
 observe-sequence@1.0.12
 ordered-dict@1.0.8
+ostrio:cookies@2.0.4
+ostrio:files@1.6.6
 promise@0.8.7
 random@1.0.10
 rate-limit@1.0.5
@@ -83,6 +87,7 @@ templating@1.1.14
 templating-tools@1.0.5
 tmeasday:check-npm-versions@0.1.1
 tracker@1.1.0
+twbs:bootstrap@3.3.6
 ui@1.0.12
 underscore@1.0.9
 urigo:static-html-compiler@0.1.8

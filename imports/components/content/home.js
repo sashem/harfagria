@@ -1,4 +1,5 @@
 import angular from 'angular';
+import {Meteor} from 'meteor/meteor'
 import angularMeteor from 'angular-meteor';
 
 import {Realms} from '../../api/realms.js';
@@ -6,15 +7,7 @@ import {Realms} from '../../api/realms.js';
 import template from './home.html';
 
 class homeCtrl{
-	constructor($scope){
-		$scope.viewModel(this);
-
-		this.helpers({
-			realms () {
-				return Realms.find({});
-			}
-		});
-	}
+	
 }
 
 const name = "home";

@@ -1,7 +1,7 @@
 import { Mongo } from 'meteor/mongo';
 import { Meteor } from 'meteor/meteor';
-import { Accounts } from 'meteor/accounts-base'
-import { Realms } from '../imports/api/realms.js'
+import { Accounts } from 'meteor/accounts-base';
+import { Realms } from '../imports/api/realms.js';
 
 
 if (Meteor.isServer) {
@@ -9,16 +9,35 @@ if (Meteor.isServer) {
   	/*Meteor.publish('usersNumber', function usersNumber() {
     	return Meteors.users.find().count();
   	});*/
+  Meteor.publish('realmsList', function() {
+    //console.log(Realms.find());
+    return Realms.find();
+  });
+
   Meteor.methods({
   	'createRealm': function(realm,image){
-      console.log(realm);
-      console.log(image);
-       if(Meteor.userId()){
-        var fs = Npm.require('fs');
-        root_path = "../../../../../public/img";
-        fs.writeFile(root_path + image.name, image);
-       }
-  	}
+        if(Meteor.userId()){
+          Realms.insert({
+            name : realm.name,
+            description : realm.description,
+            image_url : image.url
+          })
+  	    }
+    },
+    'updateRealm': function(realm,image){
+          Realms.update(
+            realm._id,
+            {
+              name : realm.name,
+              description : realm.description,
+              image_url : image.url
+            }
+          );
+    },
+    'removeRealm': function(id){
+        Realms.remove(id)
+    }
   });
+
 }
 

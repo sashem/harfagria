@@ -2,36 +2,50 @@
 	<div class="col-md-12">
 		<a class="btn btn-default" ng-click="logout()">Out</a>
 		
-		<div ng-if="$ctrl.realms.length == 0"><h2>There are no realms created yet</h2></div>
-		<div class="" ng-repeat="realm in $ctrl.realms">
-			{{realm.name}}	
+		<div ng-if="realms.length == 0"> </div>
+		<div class="" ng-repeat="realm in realms">
+			<h2><a ng-click="edit_realm(realm)">{{realm.name}}</a><a ng-click="remove_realm(realm)">--------- X</a></h2>
 		</div>
-		<div><img ng-src="$ctrl.image">{{$ctrl.image}}</div>
+		<a ng-click="unselect()" class="btn btn-danger">Unselect</a>
 		<div class="realm-form">
-			<div>
-				<input type="text" ng-model="realm.name"/>
+				<p><input type="text" ng-model="realm.name"/></p>
+				<p><img ng-src="{{realmimage.url}}"></p>
+				<p><a class="btn btn-default" ng-click="add_image()">Cargar imagen</a></p>
 				<textarea ng-model="realm.description"></textarea>
-				<div layout="column">
-				  	<div ngf-drop
-				    ngf-select
-				    ng-model = "realmImage"
-				    ngf-change="addRealmImage($file)"
-				    ngf-drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
-				    class="drop-box"
-				    ngf-multiple="false"
-				    ngf-allow-dir="false"
-				    ngf-accept="'image/*'"
-				    ngf-drop-available="true"
-				    ng-hide="cropImgSrc">
-					    <div><a class="btn btn-default">Click here to select image</a></div>
-					    <div>
-					      <strong>OR</strong>
-					    </div>
-					    <div>You can also drop image to here</div>
-			  		</div>
-				</div>
-				<a ng-click="createRealm()" class="btn btn-success">Create</a>
-			</div>
+				<p>
+				<a ng-click="createRealm()" class="btn btn-success">Create / Update</a>
+				</p>
 		</div>
 	</div>
+</div>
+
+<div class="row">
+	<div class="col-md-4">
+		<div class="" ng-repeat="recollection in recollections">
+			<h2><a ng-click="">{{recollection.name}}</a></h2>
+		</div>
+		<a href="btn btn-danger">Unselect</a>
+		<div class="realm-form">
+				<p><input type="text" ng-model="recollection.name"/></p>
+				<textarea ng-model="recollection.description"></textarea>
+				<p>
+				<a ng-click="createRecollection()" class="btn btn-success">Create / Update</a>
+				</p>
+		</div>
+	</div>
+
+	<div class="col-md-8">
+		<div class="" ng-repeat="creation in creations">
+			<h2><a ng-click="">{{creation.name}}</a></h2>
+		</div>
+		<a href="btn btn-danger">Unselect</a>
+		<div class="realm-form">
+				<p><input type="text" ng-model="creation.name"/></p>
+				<textarea ng-model="creation.description"></textarea>
+				<p>
+				<a ng-click="createCreation()" class="btn btn-success">Create / Update</a>
+				</p>
+		</div>
+	</div>
+
 </div>

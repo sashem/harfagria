@@ -1,0 +1,31 @@
+realm:{
+	_id:"",
+	name:"",
+	description:"",
+	image_url:""
+}
+
+recollection:{
+	_id:"",
+	name:"",
+	creations:[],
+	description:"",
+	created:"",
+	modified:""
+}
+
+creation:{
+	_id:"",
+	name:"",
+	description:"",
+	concepts:[],
+	contents:"",
+	created:"",
+	modified:""
+}
+
+concept:{
+	_id:"",
+	name:"",
+	contents:""
+}
