@@ -1,51 +1,143 @@
+<a class="btn btn-default" ng-click="logout()">Out</a>
+
+<h1>Realms 
+  <a ng-click="prepareRealmModal()" data-toggle="modal" data-target="#realm-modal" class="btn btn-success">+</a>
+</h1>
 <div class="row">
-	<div class="col-md-12">
-		<a class="btn btn-default" ng-click="logout()">Out</a>
-		
+	<div class="col-sm-6 col-sm-offset-3">
 		<div ng-if="realms.length == 0"> </div>
-		<div class="" ng-repeat="realm in realms">
-			<h2><a ng-click="edit_realm(realm)">{{realm.name}}</a><a ng-click="remove_realm(realm)">--------- X</a></h2>
-		</div>
-		<a ng-click="unselect()" class="btn btn-danger">Unselect</a>
-		<div class="realm-form">
-				<p><input type="text" ng-model="realm.name"/></p>
+    
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+      <div class="panel panel-default" ng-repeat="realm in realms">
+        <div class="panel-heading" role="tab" id="{{realm.name}}_heading">
+          <h4 class="panel-title">
+              <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapse_{{realm.name}}" href="#" aria-expanded="true" aria-controls="collapse_{{realm.name}}">{{realm.name}}</a>
+              <a ng-click="edit_realm(realm)" class="glyphicon glyphicon-pencil" data-toggle="modal" data-target="#realm-modal"></a>
+              <a ng-click="prepareRecreationModal(realm._id)" data-toggle="modal" data-target="#recreation-modal" class="btn btn-small btn-success">+</a>
+              <a class="glyphicon glyphicon-trash btn-remover" ng-click="remove_realm(realm)"></a>
+          </h4>
+        </div>
+        <div id="collapse_{{realm.name}}" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="{{realm.name}}_heading">
+          <div class="panel-body">
+              <div class="row" ng-repeat="recreation in realm.recreations track by $index">
+                <div class="col-md-6" data-as-sortable-item-handle><a ng-click="edit_recreation(recreation)" data-toggle="modal" data-target="#recreation-modal">{{recreation.name}}</a></div>
+                <div class="col-md-6"><a class="glyphicon glyphicon-trash btn-remover" ng-click="remove_recreation(recreation)"></a></div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!--<table class="table table-hover">
+      <tr>
+        <th>id</th>
+        <th>Realm name</th>
+        <th>Action</th>
+      </tr>
+      <tr class="" ng-repeat="realm in realms">
+        <td align="center">{{realm._id}}</td>
+        <td align="center"><a ng-click="edit_realm(realm)" data-toggle="modal" data-target="#realm-modal">{{realm.name}}</a></td>
+        <td align="center"><a class="glyphicon glyphicon-trash btn btn-danger" ng-click="remove_realm(realm)"></a></td>
+      </tr>
+
+    </table>-->
+	</div>
+</div>
+
+<!--<h1>Recreations <a ng-click="prepareRecreationModal()" data-toggle="modal" data-target="#recreation-modal" class="btn btn-success">+</a></h1>
+<div class="row">
+	<div class="col-sm-8 col-sm-offset-2">
+		<table class="table table-hover">
+      <tr>
+        <th>id</th>
+        <th>Recreation name</th>
+        <th>Action</th>
+      </tr>
+      <tr class="" ng-repeat="realm in realms">
+        <td align="center"><a ng-click="edit_recreation(recreation)" data-toggle="modal" data-target="#recreation-modal">{{recreation.name}}</a></td>
+        <td align="center">{{realms[recreation.realm_id]}}</td>
+        <td align="center"><a class="glyphicon glyphicon-trash btn btn-danger" ng-click="remove_recreation(realm)"></a></td>
+      </tr>  
+    </table>
+	</div>
+</div>-->
+
+<!-- MODALS ############################################################################################################## -->
+<!-- MODALS ############################################################################################################## -->
+<!-- MODALS ############################################################################################################## -->
+
+<div class="modal fade" tabindex="-1" role="dialog" id="realm-modal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Realm edit-create</h4>
+      </div>
+      <div class="modal-body">
+        <div class="realm-form">
+				<p><input type="text" class="form-control" ng-model="realm.name"/></p>
 				<p><img ng-src="{{realmimage.url}}"></p>
 				<p><a class="btn btn-default" ng-click="add_image()">Cargar imagen</a></p>
-				<textarea ng-model="realm.description"></textarea>
+				<textarea class="form-control" ng-model="realm.description"></textarea>
 				<p>
-				<a ng-click="createRealm()" class="btn btn-success">Create / Update</a>
+				<!-- <a ng-click="createRealm()" class="btn btn-success">Create / Update</a> -->
 				</p>
 		</div>
-	</div>
-</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="unselectRealm()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="createRealm()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
 
-<div class="row">
-	<div class="col-md-4">
-		<div class="" ng-repeat="recollection in recollections">
-			<h2><a ng-click="">{{recollection.name}}</a></h2>
-		</div>
-		<a href="btn btn-danger">Unselect</a>
-		<div class="realm-form">
-				<p><input type="text" ng-model="recollection.name"/></p>
-				<textarea ng-model="recollection.description"></textarea>
-				<p>
-				<a ng-click="createRecollection()" class="btn btn-success">Create / Update</a>
-				</p>
-		</div>
-	</div>
+<div class="modal fade" tabindex="-1" role="dialog" id="recreation-modal">
+  <div class="modal-dialog" id="recreation-modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Recreation edit-create</h4>
+      </div>
+      <div class="modal-body">
+        <div class="realm-form">
+  				<p><label>Title</label><input type="text" class="form-control" ng-model="recreation.name" ng-change="set_shortname()"/></p>
+          <p><label>Short-name</label><input type="text" class="form-control" ng-model="recreation.shortname"/></p>
+          <!--<p><label>Realm</label><select class="form-control" ng-options="realm as realm for realm in realmTypes" ng-model="recreation.real_name"></select></p>-->
+          <p><label>Short Description</label></p>
+          <textarea class="form-control" ng-model="recreation.short">
+          
+          </textarea>
+          <p><label>Main image</label></p>
+          <a ng-click="select_recreation_img()" class="btn btn-default">Select</a>
+          {{recreation.img}}<br><br>
+          <img class="img-recreation" height="200" ng-src="{{recreation.img}}">
+          <br><br>
+          <p><label>Content</label></p>
+          <p class="comment">menu: 
+            <a ng-click="insertPicUrl()" class="btn btn-default glyphicon glyphicon-picture"></a>
+            <a ng-click="englobe_text('h1')" class="btn btn-default">h1</a>
+            <a ng-click="englobe_text('h2')" class="btn btn-default">h2</a>
+            <a ng-click="englobe_text('h3')" class="btn btn-default">h3</a>
+            <a ng-click="englobe_text('div')" class="btn btn-default">div</a>
+            <a ng-click="add_table()" class="btn btn-default">table</a>
+            <a ng-click="add_list()" class="btn btn-default">li</a>
+            <a ng-click="englobe_text('p','quote')" class="btn btn-default">Quote</a>
+            <a ng-click="englobe_text('div','row')" class="btn btn-default">row</a>
+            <a ng-click="add_div_col([3,9])" class="btn btn-default">C3-9</a>
+          </p>
+          <pre id="code-editor" style="height:500px"></pre>
+          <div class="recreation-body" ng-bind-html="preview_html" id="preview_html"></div>
+          <a class="btn btn-default" ng-click="preview()">Preview</a>
 
-	<div class="col-md-8">
-		<div class="" ng-repeat="creation in creations">
-			<h2><a ng-click="">{{creation.name}}</a></h2>
-		</div>
-		<a href="btn btn-danger">Unselect</a>
-		<div class="realm-form">
-				<p><input type="text" ng-model="creation.name"/></p>
-				<textarea ng-model="creation.description"></textarea>
-				<p>
-				<a ng-click="createCreation()" class="btn btn-success">Create / Update</a>
-				</p>
-		</div>
-	</div>
-
-</div>
+          <p><label>tags</label></p>
+          <input type="text" id="taginput" size="200" class="form-control">
+		    </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="save_recreation()" data-dismiss="modal">Save changes</button>
+      </div>
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->

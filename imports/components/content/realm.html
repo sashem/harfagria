@@ -1,0 +1,29 @@
+<div class="row">
+	<h1>{{title}}</h1>
+	<div class="col-sm-4 col-sm-offset-4">
+	    <div class="input-group">
+		    <span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span>
+		    <input type="text" class="form-control" ng-model="rec_filter" id="rec_filter">
+	    </div>
+    </div>
+</div>
+<div class="row recreation-list">
+	<div class="col-md-8 col-md-offset-2">
+		<div ng-repeat="recreation in realm[0].recreations | filterByTags:rec_filter track by $index">
+			<div class="recreation-item row">
+				<h2><a href="./realms/{{title}}/{{recreation.shortname}}">{{recreation.name}}</a></h2>
+				<div class="col-sm-3">
+					<a href=""><img class="recreation-small" src="{{recreation.img}}"></a>
+				</div>
+				<div class="col-sm-9 short">
+					{{recreation.short}}
+				</div>
+			</div>
+			<div class="row recreation-tags">
+				<div class="col-sm-12">
+					tags: <a ng-repeat="tag in recreation.tags" ng-click="add_tag(tag)">{{tag}} // </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

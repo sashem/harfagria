@@ -1,29 +1,18 @@
-<div class="row">
-      <div class="col-md-8 col-md-offset-2">
+        <div class="home-btn-container"><a href="/"><i class="home-btn glyphicon glyphicon-home"></i></a></div> 
         <div id="main-menu">
-          <div class="flecha_izquierda">
-            <a ng-click="rotate_left()"><img src="./icons/flecha_izq.png"></a>
-          </div>
           <div class="scroll-show">
             <div id="scroller">
-              <div class="menu-item-container" ng-repeat="(i,realm) in realms" ng-click="set_center(realm._id)">
-                <div class="menu-item-img">
-                  <a><img ng-src="{{realm.image_url}}"></a>
-                </div>
-                <div class="menu-item-subcontainer">
-                  <div class="menu-item-top">
-                          
-                  </div>
-                  <div class="menu-item-bottom">
-                    {{realm.name}}
+              <div class="row">
+                <div class="col-md-8 col-md-offset-2">
+                  <div class="row">
+                    <div class="col-md-4" ng-repeat="(i,realm) in realms" >
+                      <div class="menu-item-bottom" ng-class="active(realm.name)">
+                          <a class="main-map-a" href="/realms/{{realm.name}}">{{realm.name}}</a>
+                        </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
-          <div class="flecha_derecha">
-            <a ng-click="rotate_right()"><img src="./icons/flecha_der.png"></a>
-          </div>
         </div>
-      </div>
-</div>

@@ -8,20 +8,23 @@ realm:{
 recollection:{
 	_id:"",
 	name:"",
-	creations:[],
-	description:"",
+	recreations:[],
+	short:"",
+	img:"",
+	tags:"",
 	created:"",
 	modified:""
 }
 
-creation:{
+recreation:{
 	_id:"",
 	name:"",
 	description:"",
 	concepts:[],
 	contents:"",
 	created:"",
-	modified:""
+	modified:"",
+	realm_id:""
 }
 
 concept:{

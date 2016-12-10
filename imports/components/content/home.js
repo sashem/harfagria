@@ -1,8 +1,6 @@
 import angular from 'angular';
-import {Meteor} from 'meteor/meteor'
+import {Meteor} from 'meteor/meteor';
 import angularMeteor from 'angular-meteor';
-
-import {Realms} from '../../api/realms.js';
 
 import template from './home.html';
 
